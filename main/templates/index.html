@@ -1,0 +1,54 @@
+{% extends "base_generic.html" %} {% block content %}
+
+<div class="my-2">
+  <a
+    href="/create_application"
+    class="my-3 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+    >Create New App</a
+  >
+</div>
+
+{% for app in applications%}
+<div class="border shadow-lg my-12 p-4">
+  <h1 class="text-4xl">{{app.name}}</h1>
+  <small>{{app.description}}</small>
+
+  <div class="mt-2 py-4">
+    <p>Max Nodes: {{app.max_nodes}}</p>
+    <p>Min Nodes: {{app.min_nodes}}</p>
+    <p>Current Nodes: {{app.current_instances}}</p>
+    <p>Status: {{app.status}}</p>
+    <p>Available on port {{app.port}}</p>
+  </div>
+  <a
+    href="{{app.url}}"
+    class="my-3 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+    >View</a
+  >
+  <a
+    href="/rebuild/{{app.id}}"
+    class="my-3 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+    >Rebuild</a
+  >
+  <a
+    href="clone/{{app.id}}"
+    class="my-3 text-blue-500 hover:text-blue-700 font-bold py-2 px-4 rounded"
+    >Clone</a
+  >
+  <a
+    href="/delete/{{app.id}}"
+    class="my-3 text-red-500 font-bold py-2 px-4 rounded"
+    ><i class="bi bi-trash-fill"></i
+  ></a>
+  <a
+    href="/refresh/{{app.id}}"
+    class="my-3 text-gray-500 font-bold py-2 px-4 rounded hover:scale-110 duration-200 transition-all"
+    ><i class="bi bi-arrow-clockwise"></i
+  ></a>
+  <a
+    href="/update/{{app.id}}"
+    class="my-3 text-gray-500 font-bold py-2 px-4 rounded hover:scale-110 duration-200 transition-all"
+    >Edit</a
+  >
+</div>
+{% endfor %} {% endblock %}
